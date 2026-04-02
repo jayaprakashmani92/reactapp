@@ -1,7 +1,8 @@
 import { useState } from "react";
 import "../../styles/register.css";
-
+import { useNavigate  } from "react-router-dom";
 export default function Register() {
+  const navigate  = useNavigate();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -17,28 +18,36 @@ export default function Register() {
   };
 
   const validate = () => {
-    let newErrors = {};
-    if (!formData.firstName.trim()) newErrors.firstName = "First name is required";
-    if (!formData.lastName.trim()) newErrors.lastName = "Last name is required";
-    if (!formData.username.trim()) newErrors.username = "Username is required";
-    if (!formData.email) newErrors.email = "Email is required";
-    else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = "Invalid email";
-    if (!formData.password) newErrors.password = "Password is required";
-    else if (formData.password.length < 6) newErrors.password = "Min 6 characters";
+    let onlyErrors = {};
+    if (!formData.firstName.trim()) onlyErrors.firstName = "First name is required";
+    if (!formData.lastName.trim()) onlyErrors.lastName = "Last name is required";
+    if (!formData.username.trim()) onlyErrors.username = "Username is required";
+    if (!formData.email) onlyErrors.email = "Email is required";
+    else if (!/\S+@\S+\.\S+/.test(formData.email)) onlyErrors.email = "Invalid email";
+    if (!formData.password) onlyErrors.password = "Password is required";
+    else if (formData.password.length < 6) onlyErrors.password = "Min 6 characters";
     if (formData.confirmPassword !== formData.password)
-      newErrors.confirmPassword = "Passwords do not match";
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+      onlyErrors.confirmPassword = "Passwords do not match";
+    setErrors(onlyErrors);
+    return Object.keys(onlyErrors).length === 0;
+   
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+     
     if (validate()) {
       alert("Registration Successful!");
       console.log("Form Data:", formData);
+      navigate("/login");
     }
   };
-
+  // const clickMe=(e)=>{
+  //       if(e == 'login'){alert('correct')}
+          
+  //       else{alert('Wrong')}
+          
+  // }
   return (
   <div className="container-fluid vh-100 d-flex align-items-center justify-content-center bg-light">
       <div className="row shadow-lg overflow-hidden w-75" style={{ borderRadius: '15px' }}>
@@ -49,7 +58,7 @@ export default function Register() {
             <p>Join our amazing community today.</p>
           </div>
         </div>
-
+        {/* <button onClick={() => clickMe('login')}>Click</button> */}
         <div className="col-lg-7 col-md-12 bg-white p-3  registerRight">
           <h2 className="fw-bold mb-1">REGISTER</h2>
           <p className="text-muted mb-4 small">IT’S COMPLETELY FREE</p>

@@ -14,7 +14,7 @@ export default function Login() {
 
   const validate = () => {
     let newErrors = {};
-    if (!loginDetails.name) {
+    if (!loginDetails.name.trim()) {
       alert("Fill the Name");
       newErrors.name = "Name is required";
     }
