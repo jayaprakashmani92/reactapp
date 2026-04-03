@@ -139,18 +139,23 @@
 }
 
 .btn-create {
-  width: 100%;
-  padding: 14px;
-  background: linear-gradient(135deg, #fae0d7, #fae0d7);
-  border: none;
-  border-radius: 8px;
-  color: #fff;
-  font-size: 14px !important;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 1s;
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #4cb41f, #009389);
+    border: none;
+    border-radius: 0;
+    color: #ffffff;
+    font-size: 14px !important;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 1s;
 }
 
+.getDatas li {
+    display: block;
+    font-size: 13px;
+    text-align: center;
+}
 .btn-create:hover {
   transform: translateY(-2px); 
   transition: 1s;

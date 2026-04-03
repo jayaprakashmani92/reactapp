@@ -1,9 +1,12 @@
-export default function PropsExample({title, concepts}){
+export default function PropsExample({name, age, department}){
+    
     return <>
-        <h4>Testing {title}</h4>
-        <p>
-             {concepts}
-        </p>
+ 
+      <tr>
+      <td>{name}</td>
+      <td>{age}</td>
+      <td>{department}</td>
+    </tr>
 
     </>
 }

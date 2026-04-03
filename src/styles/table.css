@@ -1,0 +1,37 @@
+
+.table__head th{
+    color: #FFF;
+    font-weight: 700;
+    background: #88c7fe !important;
+    white-space: nowrap;
+    padding: 6px !important;
+    font-size: 14px;
+}
+
+.parentListdata td{  
+    padding: 6px !important;
+    font-size: 13px; 
+}
+.forms form {
+    display: flex;
+    align-items: center;
+}
+
+
+.forms input {
+    border: 1px solid #cccc;
+    margin: 10px 10px;
+    font-size: 13px;
+    height: 32px;
+    padding: 6px;
+        outline: none !important;
+}
+
+.forms button {
+    background-color: #2398ff;
+    border: 1px solid #2398ff;
+    padding: 6px;
+    font-size: 12px;
+    width: 90px;
+    color: #fff;
+}

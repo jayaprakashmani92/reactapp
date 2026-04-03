@@ -10,6 +10,7 @@ export default function Register() {
     email: "",
     password: "",
     confirmPassword: "",
+    terms: ""
   });
   const [errors, setErrors] = useState({});
 
@@ -28,6 +29,7 @@ export default function Register() {
     else if (formData.password.length < 6) onlyErrors.password = "Min 6 characters";
     if (formData.confirmPassword !== formData.password)
       onlyErrors.confirmPassword = "Passwords do not match";
+    if(!formData.terms)
     setErrors(onlyErrors);
     return Object.keys(onlyErrors).length === 0;
    
@@ -105,8 +107,9 @@ export default function Register() {
             </div>
 
             <div className="form-check mb-4 text-start d-flex align-items-center">
-              <input type="checkbox" className="form-check-input me-2" id="terms" />
-              <label className="form-check-label" htmlFor="terms">I agree to the Terms & Conditions</label>
+              <input type="checkbox" onChange={handleChange}  className= {`form-check-input me-2 ${errors.confirmPassword ? 'is-invalid' : ''}`}  id="terms" />
+              <label className="form-check-label"  htmlFor="terms">I agree to the Terms & Conditions</label>
+                 <div className="invalid-feedbacks">{errors.terms}</div>
             </div>
 
             <button type="submit" className="btn btn-create w-100 py-2 fs-12 fw-bold">CREATE ACCOUNT</button>
