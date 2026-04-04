@@ -8,13 +8,13 @@ import UserDatalist from "./component/Register/userdetails";
 function App() { 
   return ( 
       <>  
-        <div className="parentListdata"><ListOfData/></div>
-       {/* <Routes>
+        {/* <div className="parentListdata"><ListOfData/></div> */}
+       <Routes>
       <Route path="" element={<Register /> } />
       
       <Route path="/login" element={<Login />} />
-    </Routes> */}
-    {/* <Register/> */}
+    </Routes>
+    {/* <Register/>  */}
     {/* <UserDatalist/> */}
       {/* <ListEvent/> */}
       </>

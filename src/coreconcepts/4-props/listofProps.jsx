@@ -41,7 +41,7 @@ export default function ListOfData() {
         </thead>
         <tbody>
           {listofObj.map((data) => (
-            <PropsExample key={data.name} name={data.name} age={date.age}  department={data.department}/>
+            <PropsExample key={data.name} name={data.name} age={data.age}  department={data.department}/>
           ))}
         </tbody>
       </table>
