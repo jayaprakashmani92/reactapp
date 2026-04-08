@@ -1,0 +1,19 @@
+.footer-compact {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: calc(100% - 40px);
+    z-index: 10;
+}
+
+.v-divider {
+    width: 1px;
+    height: 12px;
+    background: #dee2e6;
+}
+
+.tiny-hover {
+    font-size: 11px;
+    transition: color 0.2s;
+}
+ 

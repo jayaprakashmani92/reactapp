@@ -1,0 +1,75 @@
+/* HEADER PART */
+.h-menu-icon i{
+    transition: .2s;
+}
+.h-menu-icon i:hover{
+     transform: translateY(-1px);
+}
+ .header-main{
+    box-shadow: -1px 1px 7px 0px #dedede;
+        height: 37px;
+}
+/* Modern Smooth Search */
+.search-container {
+    background: #ffffff;
+    border: 1px solid #e9ecef;
+    border-radius: 0;
+    /* Softer rounded corners */
+    width: 400px;
+    display: flex;
+    align-items: center;
+    padding: 2px 12px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+    height: 30px;
+}
+
+/* The Glow Effect on Focus */
+.search-container:focus-within {
+    background: #ffffff;
+    border-color: #0d6efd;
+    width: 420px;
+    /* Subtle expansion */
+    box-shadow: 0 10px 25px rgba(13, 110, 253, 0.1);
+    transform: translateY(-1px);
+}
+
+.search-container input {
+    font-size: 13px;
+    padding: 6px 10px;
+    color: #495057;
+}
+
+.search-container input::placeholder {
+    color: #adb5bd;
+    transition: color 0.3s;
+}
+
+.search-container:focus-within input::placeholder {
+    color: #ced4da;
+}
+
+/* Modernizing the "Track Book" Button to match */
+.btn-primary-custom {
+     background: #fff;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s;
+    font-size: 12px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.btn-primary-custom:hover {
+      background: #c7ddff;
+    /* box-shadow: 0 5px 15px rgba(13, 110, 253, 0.3); */
+    transform: translateY(-1px);
+}
+.h-menu-icon svg {
+    stroke-width: 1px;
+    width: 15px;
+    cursor: pointer;
+}
+.userDetails{
+    font-size: 12px;
+}

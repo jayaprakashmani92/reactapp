@@ -55,7 +55,24 @@
       scale(0.8);
   }
 }
+.deleteUser {
+    position: relative;
+    overflow: hidden;
+    transition: background 400ms;
+    color: #fff;
+    background-color: #0078d4;
+    padding: 7px 10px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    outline: 0;
+    border: 0;
+    border-radius: 0.25rem;
+     cursor: pointer;
+}
 
+.deleteUser:hover {
+    box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.3);
+}
 #center {
   display: flex;
   flex-direction: column;

@@ -1,24 +1,35 @@
 import { Routes, Route } from "react-router-dom";
-import Register  from "./component/Register/register"
-import Login from "./component/Login/login"
-import ListEvent from "./coreconcepts/7-list/listExample";
-import ListOfData from "./coreconcepts/4-props/listofProps";
-// import PropsExample from "./coreconcepts/4-props/PropsExample"; 
-import UserDatalist from "./component/Register/userdetails";
-function App() { 
-  return ( 
-      <>  
-        {/* <div className="parentListdata"><ListOfData/></div> */}
-       <Routes>
-      <Route path="" element={<Register /> } />
-      
-      <Route path="/login" element={<Login />} />
-    </Routes>
-    {/* <Register/>  */}
-    {/* <UserDatalist/> */}
-      {/* <ListEvent/> */}
-      </>
-  )
+import Register from "./component/Register/register";
+import Login from "./component/Login/login";
+import Dashboard from "./component/dashboard/dashboard";
+import { useState, useEffect } from "react";  
+function App() {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      const data = await authService.getAllUsers();
+      setUsers(data);
+    };
+    fetchUsers();
+  }, []);
+
+  return (
+    <>
+      <Routes>
+        {/* Pass props via element */}
+        <Route
+          path="/"
+          element={<Register setUsers={setUsers} />}
+        />
+        <Route path="/login" element={<Login />} />
+        <Route
+          path="/dashboard"
+          element={<Dashboard users={users} formData={FormData} />}
+        />
+      </Routes>
+    </>
+  );
 }
 
-export default App
+export default App;

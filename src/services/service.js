@@ -1,5 +1,5 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { ref, set } from "firebase/database";
+import { ref, set, get, remove  } from "firebase/database";   
 import { auth, db } from "../firebase";
 
 // ✅ Business logic (Firebase)
@@ -43,9 +43,21 @@ const authService = {
 
       return [];
     } catch (error) {
+      console.error("Error fetching users:", error);
       return [];
+    }
+  },
+
+  async deleteUser(userId) {
+    try {
+      await remove(ref(db, "users/" + userId));
+      return { success: true };
+    } catch (error) {
+      console.error("Error deleting user:", error);
+      return { success: false, message: error.message };
     }
   }
 };
 
+// ✅ Export as default
 export default authService;
