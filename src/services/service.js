@@ -1,5 +1,5 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { ref, set, get, remove  } from "firebase/database";   
+import { ref, set, get, remove, update  } from "firebase/database";   
 import { auth, db } from "../firebase";
 
 // ✅ Business logic (Firebase)
@@ -27,6 +27,18 @@ const authService = {
       return { success: false, message: error.message };
     }
   },
+// service.js
+async  updateUser(id, userData) { 
+  const response = set(ref(db, "users/" + id), {
+         uid: id,
+        email: userData.email,
+        firstName: userData.firstName,
+        lastName: userData.lastName,
+        username: userData.username
+  });
+  return response;
+},
+
 
   async getAllUsers() {
     try {
