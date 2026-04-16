@@ -3,6 +3,7 @@ import Register from "./component/Register/register";
 import Login from "./component/Login/login";
 import Dashboard from "./component/dashboard/dashboard";
 import { useState, useEffect } from "react";  
+import authService from "./services/service";
 function App() {
   const [users, setUsers] = useState([]);
 

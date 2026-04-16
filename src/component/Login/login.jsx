@@ -1,136 +1,123 @@
 import { useState } from "react";
-
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase";
+import { useNavigate } from "react-router-dom";
+import "../../styles/login.css";
 export default function Login() {
-  const [loginDetails, loginFunction] = useState({
-    name: "",
-    password: ""
+    const navigate = useNavigate();
+  const [loginDetails, setLoginDetails] = useState({
+    email: "", // use email instead of name
+    password: "",
   });
-  const [errors, errorDetails] = useState({});
+  const [errors, setErrors] = useState({});
 
-  const handleChange = (e) => { 
-    loginFunction({ ...loginDetails, [e.target.name]: e.target.value });
-    console.log({...loginDetails})
+  const handleChange = (e) => {
+    setLoginDetails({ ...loginDetails, [e.target.name]: e.target.value });
   };
 
   const validate = () => {
     let newErrors = {};
-    if (!loginDetails.name.trim()) {
-      alert("Fill the Name");
-      newErrors.name = "Name is required";
+    if (!loginDetails.email.trim()) {
+      alert("Fill the Email");
+      newErrors.email = "Email is required";
     }
     if (!loginDetails.password) {
       alert("Fill the Password");
       newErrors.password = "Password is required";
     }
-    errorDetails(newErrors);
+    setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  const onSubmit = (e) => {
-    console.log(e.target.name.value)
+  const onSubmit = async (e) => {
     e.preventDefault();
+
     if (validate()) {
-      alert("Registration Successful!");
-      console.log("Form Data:", loginDetails);
+      try {
+        const userCredential = await signInWithEmailAndPassword(
+          auth,
+          loginDetails.email,
+          loginDetails.password,
+        );
+          navigate("/dashboard");
+        console.log("User:", userCredential.user);
+
+        // redirect to dashboard here (React Router or window.location)
+      } catch (error) {
+        console.error("Error logging in:", error);
+        alert("Login failed: " + error.message);
+      }
     }
   };
 
   return (
-    <>
-      <div className="login-page bg-light">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-10 offset-lg-1">
-              <h3 className="mb-3">Login Now</h3>
-              <div className="bg-white shadow rounded">
-                <div className="row">
-                  <div className="col-md-7 pe-0">
-                    <div className="form-left h-100 py-5 px-5">
-                      <form className="row g-4" onSubmit={onSubmit}>
-                        <div className="col-12">
-                          <label>
-                            Username <span className="text-danger">*</span>
-                          </label>
-                          <div className="input-group">
-                            <div className="input-group-text">
-                              <i className="bi bi-person-fill"></i>
-                            </div>
-                            <input
-                              type="text"
-                              className="form-control"
-                              value={loginDetails.name}
-                              placeholder="Enter Username"
-                              onChange={handleChange}
-                              name="name"
-                            />
-                          </div>
-                        </div>
+    
 
-                        <div className="col-12">
-                          <label>
-                            Password <span className="text-danger">*</span>
-                          </label>
-                          <div className="input-group">
-                            <div className="input-group-text">
-                              <i className="bi bi-lock-fill"></i>
-                            </div>
-                            <input
-                              type="password"
-                              className="form-control"
-                              value={loginDetails.password}
-                              name="password"
-                              onChange={handleChange}
-                              placeholder="Enter Password"
-                            />
-                          </div>
-                        </div>
+    <div className="container-fluid vh-100 d-flex align-items-center justify-content-center bg-light">
+      <div
+        className="row shadow-lg overflow-hidden w-75"
+        style={{ borderRadius: "15px" }}
+      >
+        <div className="col-lg-6 d-none d-lg-flex bg-primary-color align-items-center justify-content-center p-5 text-white">
+          <div className="text-center">
+            <h2 className="fw-bold mb-1">LOGIN</h2>
+            <p className="text-muted mb-4 small">Welcome Back!</p>
+            <img
+              src="https://ismailvtl-images-project.vercel.app/startup-launch.png"
+              className="w-75"
+              alt="Login Left Image"
+            />
+          </div>
+        </div>
 
-                        <div className="col-sm-6">
-                          <div className="form-check">
-                            <input
-                              className="form-check-input"
-                              type="checkbox"
-                              id="inlineFormCheck"
-                            />
-                            <label
-                              className="form-check-label"
-                              htmlFor="inlineFormCheck"
-                            >
-                              Remember me
-                            </label>
-                          </div>
-                        </div>
-
-                        <div className="col-sm-6">
-                          <a href="#" className="float-end text-primary">
-                            Forgot Password?
-                          </a>
-                        </div>
-
-                        <div className="col-12">
-                          <button
-                            type="submit"
-                            className="btn btn-primary px-4 float-end mt-4"
-                          >
-                            Login
-                          </button>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                  <div className="col-md-5 ps-0 d-none d-md-block">
-                    <div className="form-right h-100 bg-primary text-white text-center pt-5">
-                      <i className="bi bi-bootstrap"></i>
-                      <h2 className="fs-1">Welcome Back!!!</h2>
-                    </div>
-                  </div>
+        <div className="col-lg-6 col-md-12 bg-white p-3 registerRight">
+          <div className="centerForm">
+            <form className="row g-4" onSubmit={onSubmit}>
+              <div className="col-12 mt-1">
+                <label for="email">
+                  Email <span className="text-danger">*</span>
+                </label>
+                <div className="input-group">
+                  
+                  <input
+                    type="email"
+                    className="form-control"
+                    value={loginDetails.email}
+                    placeholder="Enter Email"
+                    onChange={handleChange}
+                    name="email"
+                    id="email"
+                  />
                 </div>
               </div>
-              
-            </div>
+
+              <div className="col-12 mt-1">
+                <label for="password">
+                  Password <span className="text-danger">*</span>
+                </label>
+                <div className="input-group">
+                 
+                  <input
+                    type="password"
+                    className="form-control"
+                    value={loginDetails.password}
+                    name="password"
+                    onChange={handleChange}
+                    placeholder="Enter Password"
+                    id="password"
+                  />
+                </div>
+              </div>
+
+              <div className="col-12">
+                <button type="submit" className="btn btn-create w-100">
+                  Login
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
